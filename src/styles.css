@@ -1,0 +1,77 @@
+body {
+  margin: 0;
+  font-family: Verdana, Geneva, Tahoma, sans-serif, Arial;
+}
+
+label {
+  font-weight: bold;
+}
+
+.col-id-header {
+  width: 80px;
+}
+
+.col-id {
+  width: 80px;
+  text-align: right;
+}
+
+.col-estado-header {
+  width: 80px;
+}
+
+.col-estado {
+  width: 80px;
+  text-align: center;
+}
+
+.col-cidadeCliente-header {
+  width: 180px;
+}
+
+.col-categoriaProduto-header {
+  width: 200px;
+}
+
+.col-precoProduto-header {
+  width: 120px;
+}
+
+.col-cidadeCliente-estado {
+  width: 180px;
+  text-align: left;
+}
+
+.col-acoes-header {
+  width: 120px;
+}
+
+.col-acoes {
+  width: 120px;
+  text-align: center;
+}
+
+.col-telefone-header {
+  width: 160px;
+}
+
+.col-telefone {
+  width: 160px;
+  text-align: center;
+}
+
+.col-preco {
+  width: 120px;
+  text-align: center;
+}
+
+.col-cidadeProduto {
+  width: 200px;
+}
+
+@media(min-width:1200px) {
+  .container {
+    width: 930px;
+    margin: 0 auto;
+  }
+}
