@@ -69,6 +69,25 @@ label {
   width: 200px;
 }
 
+.col-valorPedido-header {
+  width: 120px;
+  text-align: center;
+}
+
+.col-valorPedido {
+  width: 120px;
+  text-align: center;
+}
+
+.col-dataPedido {
+  width: 150px;
+  text-align: center;
+}
+
+.col-dataPedido-header {
+  width: 150px;
+}
+
 @media(min-width:1200px) {
   .container {
     width: 930px;

@@ -27,6 +27,9 @@ import { CategoriasModule } from './pages/categorias/categorias.module';
 import { ProdutosModule } from './pages/produtos/produtos.module';
 import { CategoriasService } from './services/categorias.service';
 import { ProdutosService } from './services/produtos.service';
+import { PedidosPesquisaComponent } from './pages/pedidos/pedidos-pesquisa/pedidos-pesquisa.component';
+import { PedidosModule } from './pages/pedidos/pedidos.module';
+import { PedidosService } from './services/pedidos.service';
 
 const routes: Routes = [
   { path: 'cidades', component: CidadesPesquisaComponent },
@@ -44,7 +47,9 @@ const routes: Routes = [
   { path: 'produtos', component: ProdutosPesquisaComponent },
   { path: 'produtos/novo', component: ProdutosCadastroComponent },
   { path: 'produtos/:id', component: ProdutosCadastroComponent },
-]
+
+  { path: 'pedidos', component: PedidosPesquisaComponent },
+];
 
 @NgModule({
   declarations: [
@@ -63,12 +68,14 @@ const routes: Routes = [
     ClientesModule,
     CategoriasModule,
     ProdutosModule,
+    PedidosModule,
   ],
   providers: [
     CidadesService,
     ClientesService,
     CategoriasService,
     ProdutosService,
+    PedidosService,
     ConfirmationService,
     MessageService,
     ErrorHandlerService

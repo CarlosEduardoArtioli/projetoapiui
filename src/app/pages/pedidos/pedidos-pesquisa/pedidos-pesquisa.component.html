@@ -1,0 +1,56 @@
+<div class="container">
+    <div class="ui-g">
+        <form autocomplete="off" (ngSubmit)="pesquisar()">
+            <div class="ui-g-12">
+                <h1>Pedidos</h1>
+            </div>
+
+            <div class="ui-g-8 ui-fluid">
+                <label>Pedido</label>
+                <input type="text" pInputText name="nome" [(ngModel)]="filtro.nome" />
+            </div>
+
+            <div class="ui-g-12">
+                <button pButton type="submit" label="Pesquisar"></button>
+            </div>
+        </form>
+    </div>
+
+    <div class="ui-g">
+        <div class="ui-g-12">
+            <p-table [value]="pedidos" [paginator]="true" [rows]="filtro.itensPorPagina"
+                [totalRecords]="totalRegistros" [lazy]="true" [responsive]="true" (onLazyLoad)="aoMudarPagina($event)" #tabela>
+                <ng-template pTemplate="header">
+                    <tr>
+                        <th class="col-id-header">#</th>
+                        <th class="col-dataPedido-header">Data do Pedido</th>
+                        <th class="col-clientePedido-header">Cliente</th>
+                        <th class="col-valorPedido-header">Valor</th>
+                        <th class="col-acoes-header">Ações</th>
+                    </tr>
+                </ng-template>
+                <ng-template pTemplate="body" let-ped>
+                    <tr>
+                        <td class="col-id">{{ped.id}}</td>
+                        <td class="col-dataPedido">{{ped.datapedido}}</td>
+                        <td class="col-clientePedido">{{ped.cliente.nome}}</td>
+                        <td class="col-valorPedido">{{ped.valorpedido}}</td>
+                        <td class="col-acoes">
+                            <a pButton icon="pi pi-pencil" pTooltip="Editar" tooltipPosition="top"
+                                [routerLink]="['/pedidos', ped.id]"></a>
+                            <button pButton icon="pi pi-trash" pTooltip="Excluir" tooltipPosition="top"
+                                (click)="confirmarExclusao(ped)"></button>
+                        </td>
+                    </tr>
+                </ng-template>
+                <ng-template pTemplate="emptymessage">
+                    <tr>
+                        <td colspan="4">
+                            Nenhum pedido encontrado.
+                        </td>
+                    </tr>
+                </ng-template>
+            </p-table>
+        </div>
+    </div>
+</div>
