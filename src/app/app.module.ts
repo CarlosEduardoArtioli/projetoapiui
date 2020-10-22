@@ -30,6 +30,7 @@ import { ProdutosService } from './services/produtos.service';
 import { PedidosPesquisaComponent } from './pages/pedidos/pedidos-pesquisa/pedidos-pesquisa.component';
 import { PedidosModule } from './pages/pedidos/pedidos.module';
 import { PedidosService } from './services/pedidos.service';
+import { PedidosCadastroComponent } from './pages/pedidos/pedidos-cadastro/pedidos-cadastro.component';
 
 const routes: Routes = [
   { path: 'cidades', component: CidadesPesquisaComponent },
@@ -49,6 +50,7 @@ const routes: Routes = [
   { path: 'produtos/:id', component: ProdutosCadastroComponent },
 
   { path: 'pedidos', component: PedidosPesquisaComponent },
+  { path: 'pedidos/novo', component: PedidosCadastroComponent },
 ];
 
 @NgModule({

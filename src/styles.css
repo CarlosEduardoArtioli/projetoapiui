@@ -88,9 +88,69 @@ label {
   width: 150px;
 }
 
+.col-nomeProduto-header {
+  width: 400px;
+}
+
+.col-unidade-header {
+  width: 100px;
+}
+
+.col-qtdePedida-header {
+  width: 150px;
+}
+
+.col-tara-header {
+  width: 150px;
+}
+
+.col-qtdeLiq-header {
+  width: 150px;
+}
+
+.col-valorPedido-header {
+  width: 150px;
+}
+
+.col-totalItem-header {
+  width: 150px;
+}
+
+.col-nomeProduto {
+  width: 400px;
+}
+
+.col-unidade {
+  width: 100px;
+}
+
+.col-qtdePedida {
+  width: 150px;
+}
+
+.col-tara {
+  width: 150px;
+}
+
+.col-qtdeLiq {
+  width: 150px;
+}
+
+.col-valorPedido {
+  width: 150px;
+}
+
+.col-totalItem {
+  width: 150px;
+}
+
 @media(min-width:1200px) {
   .container {
     width: 930px;
     margin: 0 auto;
   }
+}
+
+body .ui-button {
+  margin: 0 2px;
 }

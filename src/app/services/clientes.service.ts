@@ -73,4 +73,8 @@ export class ClientesService {
         return cliente;
       });
   }
+
+  getClientes(nome: string): Promise<any> {
+    return this.http.get(`${this.clientesUrl}/cli/${nome}`).toPromise();
+  }
 }

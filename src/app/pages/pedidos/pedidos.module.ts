@@ -9,10 +9,15 @@ import { ButtonModule } from 'primeng/button';
 import { TableModule } from 'primeng/table';
 import { TooltipModule } from 'primeng/tooltip';
 import { DropdownModule } from 'primeng/dropdown';
+import { CalendarModule } from 'primeng/calendar';
+import { AutoCompleteModule } from 'primeng/autocomplete';
+import { PanelModule } from 'primeng/panel';
+import { PedidosCadastroComponent } from './pedidos-cadastro/pedidos-cadastro.component';
+import { DialogModule } from 'primeng/dialog';
 
 
 @NgModule({
-  declarations: [PedidosPesquisaComponent],
+  declarations: [PedidosPesquisaComponent, PedidosCadastroComponent],
   exports: [PedidosPesquisaComponent],
   imports: [
     CommonModule,
@@ -24,7 +29,11 @@ import { DropdownModule } from 'primeng/dropdown';
     ButtonModule,
     TableModule,
     TooltipModule,
-    DropdownModule
+    DropdownModule,
+    CalendarModule,
+    AutoCompleteModule,
+    PanelModule,
+    DialogModule
   ]
 })
 export class PedidosModule { }

@@ -57,8 +57,7 @@ export class PedidosPesquisaComponent implements OnInit {
       .then(() => {
         if (this.grid.first === 0) {
           this.pesquisar();
-        }
-        else {
+        } else {
           this.grid.first = 0;
         }
         this.messageService.add({ severity: 'success', summary: 'Atenção', detail: 'Pedido excluido com sucesso' });
