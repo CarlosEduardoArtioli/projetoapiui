@@ -6,12 +6,14 @@
       </div>
       <div class="ui-g-4 ui-md-3 ui-fluid">
         <label>Data do Pedido</label>
-        <p-calendar name="datapedido" dateFormat="dd/mm/yy" [inline]="false" [showIcon]="false" [readonlyInput]="true" [(ngModel)]="pedido.datapedido"></p-calendar>
+        <p-calendar name="datapedido" dateFormat="dd/mm/yy" [inline]="false" [showIcon]="false" [readonlyInput]="true"
+          [(ngModel)]="pedido.datapedido"></p-calendar>
       </div>
       <div class="ui-g-9 ui-fluid">
         <label>Cliente</label>
-        <p-autoComplete name="cliente" [size]="200" placeholder="Informe o nome do cliente a pesquisar" [minLength]="3" [suggestions]="clientes"
-          (completeMethod)="carregarClientes($event)" [(ngModel)]="pedido.cliente" field="nome">
+        <p-autoComplete name="cliente" [size]="200" placeholder="Informe o nome do cliente a pesquisar" [minLength]="3"
+          [suggestions]="clientes" (completeMethod)="carregarClientes($event)" [(ngModel)]="pedido.cliente"
+          field="nome">
         </p-autoComplete>
       </div>
       <div class="ui-g-12">
@@ -32,17 +34,19 @@
                   <th class="col-acoes-header"></th>
                 </tr>
               </ng-template>
-              <ng-template pTemplate="body" let-item>
-                <td class="col-codigo">{{item.produto.id}}</td>
-                <td>{{item.produto.nome}}</td>
-                <td>{{item.qtdeitem}}</td>
-                <td>{{item.valorunitario | number:'1.2-2'}</td>
-                <td>{{item.totalitem | number:'1.2-2'}}</td>
-                <td class="col-acoes">
-                  <button pButton icon="pi pi-pencil" pTooltip="Editar" tooltipPosition="top"></button>
+              <ng-template pTemplate="body" let-item let-rowIndex="rowIndex">
+                <tr>
+                  <td class="col-codigo">{{item.produto.id}}</td>
+                  <td>{{item.produto.nome}}</td>
+                  <td>{{item.qtdeitem}}</td>
+                  <td>{{item.valorunitario | number:'1.2-2'}}</td>
+                  <td>{{item.totalitem | number:'1.2-2'}}</td>
+                  <td class="col-acoes">
+                    <button pButton icon="pi pi-pencil" type="button" pTooltip="Editar" tooltipPosition="top" (click)="prepararEdicaoItem(item, rowIndex)"></button>
 
-                  <button pButton icon="pi pi-trash" pTooltip="Excluir" tooltipPosition="top"></button>
-                </td>
+                    <button pButton icon="pi pi-trash" type="button" pTooltip="Excluir" tooltipPosition="top" (click)="removerItem(rowIndex)"></button>
+                  </td>
+                </tr>
               </ng-template>
               <ng-template pTemplate="emptymessage">
                 <tr>
@@ -69,25 +73,27 @@
   </form>
 </div>
 
-<p-dialog header="Novo Produto" [(visible)]="exibirFormularioItem" modal="true" [closable]="false"
+<p-dialog header="Novo Produto" [(visible)]="exibirFormularioItem" modal="true" [closable]="false" *ngIf="itempedido"
   [style]="{width: '850px', maxWidth: '850px'}">
-  <form autocomplete="off">
+  <form #frmItem="ngForm" autocomplete="off" (ngSubmit)="confirmarItem(frmItem)">
     <div class="ui-g-10 ui-fluid">
       <label>Produto</label>
-      <p-autoComplete name="produto" [size]="200" placeholder="Informe o nome do produto a pesquisar">
+      <p-autoComplete [(ngModel)]="itempedido.produto" name="produtos" [size]="200"
+        placeholder="Informe o nome do produto a pesquisar" [suggestions]="produtos"
+        (completeMethod)="carregarProdutos($event)" field="nome" [minLength]="3" (onSelect)="atribuirValorUnitario()">
       </p-autoComplete>
     </div>
     <div class="ui-g-3 ui-fluid">
       <label>Qtde</label>
-      <input pInputText type="text" name="qtde">
+      <input pInputText type="text" name="qtde" [(ngModel)]="itempedido.qtdeitem" (blur)="calculaTotalItem()">
     </div>
     <div class="ui-g-3 ui-fluid">
       <label>Valor Unitário</label>
-      <input pInputText type="text" name="valorunitario">
+      <input pInputText type="text" name="valorunitario" [(ngModel)]="itempedido.valorunitario">
     </div>
     <div class="ui-g-3 ui-fluid">
       <label>Total do item</label>
-      <input pInputText type="text" name="totalitem">
+      <input pInputText type="text" name="totalitem" [(ngModel)]="itempedido.totalitem">
     </div>
 
     <div class="ui-g-12">

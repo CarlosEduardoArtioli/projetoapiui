@@ -70,6 +70,7 @@ export class PedidosService {
       .toPromise()
       .then(response => {
         const pedidoAlterado = response;
+        this.converterStringsParaDatas([pedidoAlterado]);
         return pedidoAlterado;
       });
   }
@@ -79,6 +80,7 @@ export class PedidosService {
       .toPromise()
       .then(response => {
         const pedido = response;
+        this.converterStringsParaDatas([pedido]);
         return pedido;
       });
   }

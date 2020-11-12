@@ -6,6 +6,8 @@ import { PedidosService } from '../../../services/pedidos.service';
 import { ErrorHandlerService } from '../../../core/error-handler.service';
 import { ClientesService } from '../../../services/clientes.service';
 import { FormControl } from '@angular/forms';
+import { ProdutosService } from '../../../services/produtos.service';
+import { ItemPedido } from '../../../models/itemPedido.model';
 
 @Component({
   selector: 'app-pedidos-cadastro',
@@ -17,6 +19,10 @@ export class PedidosCadastroComponent implements OnInit {
   pedido = new Pedido();
   exibirFormularioItem = false;
   clientes = [];
+  produtos = [];
+  itempedido: ItemPedido;
+  itemIndex: number;
+  pedidoTotal = 0;
 
   constructor(
     private route: ActivatedRoute,
@@ -25,6 +31,7 @@ export class PedidosCadastroComponent implements OnInit {
     private errorHandler: ErrorHandlerService,
     private router: Router,
     private clientesService: ClientesService,
+    private produtosService: ProdutosService,
   ) { }
 
   ngOnInit() {
@@ -85,10 +92,56 @@ export class PedidosCadastroComponent implements OnInit {
   // Itens do Pedido
   prepararNovoItem() {
     this.exibirFormularioItem = true;
+    this.itempedido = new ItemPedido();
+    this.itemIndex = this.pedido.itens.length;
+  }
+
+  prepararEdicaoItem(itempedido: ItemPedido, index: number) {
+    this.itempedido = this.clonarItem(itempedido);
+    this.exibirFormularioItem = true;
+    this.itemIndex = index;
+  }
+
+  confirmarItem(frm: FormControl) {
+    this.pedido.itens[this.itemIndex] = this.clonarItem(this.itempedido);
+    this.calcularTotalPedido();
+    this.prepararNovoItem();
+  }
+
+  clonarItem(itemPedido: ItemPedido): ItemPedido {
+    return new ItemPedido(itemPedido.id, itemPedido.produto, itemPedido.qtdeitem, itemPedido.valorunitario, itemPedido.totalitem);
   }
 
   closeForm() {
     this.exibirFormularioItem = false;
+  }
+
+  carregarProdutos(event) {
+    const query = event.query;
+    this.produtosService.getProdutos(query).then(produtos => {
+      this.produtos = produtos;
+    });
+  }
+
+  atribuirValorUnitario() {
+    this.itempedido.valorunitario = this.itempedido.produto.preco;
+  }
+
+  calcularTotalPedido() {
+    this.pedidoTotal = 0;
+    for (let i = 0; i < this.pedido.itens.length; i++) {
+      this.pedidoTotal += this.pedido.itens[i].totalitem;
+    }
+    this.pedido.valorpedido = this.pedidoTotal;
+  }
+
+  removerItem(index: number) {
+    this.pedido.itens.splice(index, 1);
+    this.calcularTotalPedido();
+  }
+
+  calculaTotalItem() {
+    this.itempedido.totalitem = this.itempedido.qtdeitem * this.itempedido.valorunitario;
   }
 
 }

@@ -12,7 +12,7 @@
     top: 0;
     bottom: 0;
     left: 0;
-    width: 210px;
+    width: 190px;
     margin: 0;
     padding: 0;
     z-index: 9998;
@@ -34,7 +34,7 @@
 }
 
 .navbar-usuario {
-    padding: 15px;
+    padding: 10px;
     margin-bottom: 15px;
     border-bottom: 1px solid #525151;
     text-transform: uppercase;

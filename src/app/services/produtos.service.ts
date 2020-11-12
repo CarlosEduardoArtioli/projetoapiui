@@ -73,4 +73,8 @@ export class ProdutosService {
         return produto;
       });
   }
+
+  getProdutos(nome: string): Promise<any> {
+    return this.http.get(`${this.produtosUrl}/prod/${nome}`).toPromise();
+  }
 }
